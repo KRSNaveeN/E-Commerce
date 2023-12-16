@@ -1,12 +1,24 @@
 
-
-import Dummydata from "./dummydata";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Context from "../Store/Context";
 
-let data = [{name:"jjj"},{name:"jjjkkk"}];
+
 const Cart = ()=>{
+    let ctx = useContext(Context);
+    const [data, setData] = useState([]);
+    useEffect(()=>{setData(ctx.listitems)},[])
+
+    function deleteHandler(x){
+console.log("btn clicked");
+     let index = data.findIndex((eachitem)=>eachitem.title === x.title);
+     
+     let updatearray = [...data];
+     updatearray[index] = {...updatearray[index], count : Number(updatearray[index].count) - 1 }
+     setData(updatearray);
+     ctx.setCarttotal((pre)=>pre-1);
+    }
 
     return<Table size='md' responsive>
 
@@ -20,12 +32,12 @@ const Cart = ()=>{
       </thead>
       <tbody>
       {
-        Dummydata.map((item)=>{
-            return (item['quantity'] && (<tr>
+        data.map((item)=>{
+            return ( item.count>0 && (<tr key={Math.random()}>
             <td><img style={{width:'40px'}} src={item.imageUrl}   alt="img"/>{item.title}</td>
             
             <td>{item.price}</td>
-            <td>{1} <Button variant="danger"  >Remove</Button></td>
+            <td>{item.count} <Button variant="danger" onClick={()=>{deleteHandler(item)}} >Remove</Button></td>
         </tr>))
         })
     }

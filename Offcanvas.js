@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Cart from './Cart';
+import Context from '../Store/Context';
 
 function Example() {
   const [show, setShow] = useState(false);
+
+  let ctx= useContext(Context);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -12,7 +15,7 @@ function Example() {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Cart(0)
+        Cart {ctx.data}
       </Button>
 
       <Offcanvas show={show} onHide={handleClose}>

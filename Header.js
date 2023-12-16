@@ -23,7 +23,7 @@ const Header = ()=>{
             
         </Col>
         <Col onClick={clickHandler} xs={{ span: 1, offset: 3}}>
-            <Example placement="top" name = "end"/>
+            <Example  placement="top" name = "end"/>
         </Col>
     </Row>
     </Container>
