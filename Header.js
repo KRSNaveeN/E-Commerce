@@ -1,8 +1,13 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/esm/Button';
+import Example from './Cart/Offcanvas';
 const Header = ()=>{
     console.log("header");
+    function clickHandler(){
+
+    }
     return <>
     <Container >
     <Row style={{backgroundColor:'black', color:'white' }}>
@@ -17,8 +22,8 @@ const Header = ()=>{
             </Row>
             
         </Col>
-        <Col  xs={{ span: 1, offset: 3}}>
-            Cart(0)
+        <Col onClick={clickHandler} xs={{ span: 1, offset: 3}}>
+            <Example placement="top" name = "end"/>
         </Col>
     </Row>
     </Container>
