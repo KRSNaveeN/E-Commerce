@@ -19,9 +19,9 @@ const Header = ()=>{
         </Col>
         <Col xs={4}>
             <Row>
-            <Col><NavLink to='/'>HOME</NavLink></Col>
-            <Col>STORE</Col>
-            <Col><NavLink to='/about' className={(isActive)=>{(isActive ? "classes.active" : " ")}}>ABOUT</NavLink></Col>
+            <Col><NavLink to='/home'>HOME</NavLink></Col>
+            <Col><NavLink to ="/" >STORE</NavLink></Col>
+            <Col><NavLink to='/about' >ABOUT</NavLink></Col>
             </Row>
             
         </Col>
