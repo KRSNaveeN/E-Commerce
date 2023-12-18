@@ -3,18 +3,22 @@ import MoviesList from "./MoviesList";
 
 const Movies = ()=>{
  const [movies, setMovies] = useState([]);
+ const [loading, setLoading] = useState(false);
 
   async function MoviesHandler(){
+    setLoading(true);
      let response = await fetch("https://swapi.dev/api/films/");
      let data = await response.json();
+     setLoading(false);
     //  console.log(data.results);
      setMovies(data.results);
     }
     return <>
-    <section>
-        <button onClick={MoviesHandler}>Fetch Movies</button>
+    <section style={{textAlign:"center"}}>
+        <button  onClick={MoviesHandler}>Fetch Movies</button>
     </section>
     <section>
+        {loading&& <h2>loading....</h2>}
         <MoviesList movies={movies}/>
     </section>
     </>;
