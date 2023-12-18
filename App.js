@@ -1,19 +1,24 @@
-
-import Container from 'react-bootstrap/esm/Container';
-import Header from './Components/Header';
+import  {RouterProvider, createBrowserRouter} from 'react-router-dom';
+import Root from '../src/Components/Pages/Root';
 import List from './Components/List';
-import Cart from './Components/Cart/Cart';
-import Example from './Components/Cart/Offcanvas';
-import { useState } from 'react';
+import AboutRoot from './Components/Pages/AboutRoot';
+import Home from './Components/Home';
+import Movies from './Movies';
 
+
+let router = createBrowserRouter([{
+  path : '/' , element: <Root/>,  errorElement : <h1>Error Page</h1>, children :[
+    {path : '/', element : <List/>}, {path:'/about', element : <AboutRoot/>}, {
+      path : '/home', element: <Home/>
+    }
+  ]},
+
+  ])
 function App() {
   
-  return (<Container >
-       <Header/>
-       <div style={{height:'40px', textAlign:'center', padding:'30px', backgroundColor:'grey'}}>The Generics</div>
-       <List />
-  </Container>
-  );
+  // return (<RouterProvider router={router}/>
+  return <Movies/>
+  // );
 }
 
 
